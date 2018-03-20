@@ -1,3 +1,10 @@
+#http://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
+
+
+
+#opening external file to save LOG
+logfile = open("log_file.txt", "w")
+
 
 def getchar(words,pos):
 	""" returns char at pos of words, or None if out of bounds """
@@ -56,6 +63,8 @@ ad = { 'q5':'TIME_TOKEN' }
 
 # get a string from input
 text = input('give some input>')
+logfile.write(text + "\n")
+
 
 # scan text until no more input
 while text:	# that is, while len(text)>0
@@ -65,10 +74,17 @@ while text:	# that is, while len(text)>0
 	
 	if token=='ERROR_TOKEN':
 		print('unrecognized input at pos',position+1,'of',text)
+		logfile.write('unrecognized input at pos ' + position+1 + 'of ' + text)
+
 		break
 	
+
 	print("token:",token,"string:",text[:position])
-	
+	logfile.write("token: " + token + " string: " + text[:position] + "\n")
+
 	# remaining text for next scan
 	text = text[position:]
+
+
+logfile.close()
 	
